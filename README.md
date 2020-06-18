@@ -17,7 +17,7 @@ All pieces communicate with the others using the Open Sound Control (OSC) protoc
 
 # Setup
 
-Use of this project requires Node Package Manager (NPM). Download it here.
+Use of this project requires Node Package Manager (NPM). Download it [here](https://www.npmjs.com/get-npm).
 
 Once downloaded, run `npm install` in the directory where `package.json` resides.
 This will install all necessary project dependencies with the appropriate version.
@@ -26,4 +26,4 @@ After successfully installing dependencies, run `nodemon index.js` to start
 the server allowing for transmission of OSC messages.
 
 Open the browser of your choice, and navigate to localhost:3000 to begin
-using the application. 
+using the application.
