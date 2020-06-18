@@ -1,17 +1,28 @@
-// https://socket.io/docs/client-api/#Socket
-const io = require('socket.io')(8081);
-const path = require('path');
-const osc = require('node-osc');
-const express = require('express');
-const app = express();
+/*
+This file represents the server-side of this application. It is responsible
+for creating and managing the socket used to pass Open Sound Control (OSC)
+messages.
+
+This app uses the express framework.
+*/
+
+const io = require('socket.io')(8081);  // send osc over 8081
+const path = require('path');           // path is needed for static files
+const osc = require('node-osc');        // import osc functionality
+
+const express = require('express');     // use the express framework
+const app = express();                  // initialize the app
 
 let oscServer, oscClient;
 let isConnected = false;
 
-
+// inform the app that we will use static resources
 app.use(express.static(path.join(__dirname, 'public')));
+
+// set the app to be served up at port 3000
 app.listen(3000);
 
+// when a connection is successful, create the OSC client and server
 io.sockets.on('connection', function (socket) {
 	console.log('connection');
 	try {
