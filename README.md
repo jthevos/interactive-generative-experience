@@ -27,3 +27,12 @@ the server allowing for transmission of OSC messages.
 
 Open the browser of your choice, and navigate to localhost:3000 to begin
 using the application.
+
+# Setup using Heroku
+
+This project is deployed on Heroku.
+
+Run `heroku login` and enter the appropriate credentials.
+To run locally, run `heroku local web`
+
+View the app as deployed [here](https://interactive-generative.herokuapp.com/).
