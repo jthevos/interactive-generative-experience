@@ -21,10 +21,10 @@ let isConnected = false;
 
 // inform the app that we will use static resources
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('port', process.env.PORT);
+//app.set('port', process.env.PORT);
 
-// set the app to be served up at port 3000
-app.listen(3000);
+// set the app to be served up at port 5000
+app.listen(process.env.PORT || 5000)
 
 app.get('/', (req, res) => {
 	io.sockets.on('connection', function (socket) {
