@@ -14,11 +14,14 @@ const osc = require('node-osc');        // import osc functionality
 const express = require('express');     // use the express framework
 const app = express();                  // initialize the app
 
+//const env = require('dotenv').config()              // ensure environment variables can be accessed
+
 let oscServer, oscClient;
 let isConnected = false;
 
 // inform the app that we will use static resources
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('port', process.env.PORT);
 
 // set the app to be served up at port 3000
 app.listen(3000);
@@ -53,7 +56,7 @@ app.get('/', (req, res) => {
 		}
 
 	});
-	
+
 	res.status(200).send();
 })
 
