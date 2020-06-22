@@ -7,8 +7,7 @@ This app uses the express framework. OSC messages are sent over a web socket
 connected on port 8081. The app itself is access on port 3000.
 */
 
-const ioServer = require('socket.io')(8081);  // send osc over 8081
-const io = require('socket.io-client');
+const io = require('socket.io')(8081);  // send osc over 8081
 const path = require('path');           // path is needed for static files
 const osc = require('node-osc');        // import osc functionality
 
@@ -18,17 +17,16 @@ const app = express();                  // initialize the app
 let oscServer, oscClient;
 let isConnected = false;
 
-// inform the app that we will use static resources
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set the app to be served up at port 5000 OR the dynamic port from Heroku
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
 	res.status(200).send();
 });
 
-ioServer.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
 	console.log('connection');
 
 	// when a connection is successful, create the OSC client and server
