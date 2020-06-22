@@ -204,8 +204,9 @@ function receiveOsc(address, value) {
 }
 
 // in = 8338 out = 3334
-function setupOsc(oscPortIn, oscPortOut) {
-	var socket = io.connect('http://127.0.0.1:8081', { port: 8081, rememberTransport: false });
+// need an async function here, otherwise we get an io undefined error.
+async function setupOsc(oscPortIn, oscPortOut) {
+	var socket = await io.connect('http://127.0.0.1:8081', { port: 8081, rememberTransport: false });
 	socket.on('connect', function() {
 		socket.emit('config', {
 			server: { port: oscPortIn,  host: '127.0.0.1'},
