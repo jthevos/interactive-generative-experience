@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:install": "npm install",
-    "start": "npm run start:install && node index.js",
+    "start:install": "npm install && cd public && npm install && cd ..",
+    "start": "npm run start:install && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
