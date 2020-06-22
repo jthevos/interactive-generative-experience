@@ -7,7 +7,8 @@ This app uses the express framework. OSC messages are sent over a web socket
 connected on port 8081. The app itself is access on port 3000.
 */
 
-const io = require('socket.io')(8081);  // send osc over 8081
+const ioServer = require('socket.io')(8081);  // send osc over 8081
+const io = require('socket.io-client');
 const path = require('path');           // path is needed for static files
 const osc = require('node-osc');        // import osc functionality
 
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 	res.status(200).send();
 });
 
-io.sockets.on('connection', function (socket) {
+ioServer.sockets.on('connection', function (socket) {
 	console.log('connection');
 
 	// when a connection is successful, create the OSC client and server
