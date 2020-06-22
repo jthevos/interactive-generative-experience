@@ -14,21 +14,20 @@ const osc = require('node-osc');        // import osc functionality
 const express = require('express');     // use the express framework
 const app = express();                  // initialize the app
 
-//const env = require('dotenv').config()              // ensure environment variables can be accessed
-
 let oscServer, oscClient;
 let isConnected = false;
 
 // inform the app that we will use static resources
 app.use(express.static(path.join(__dirname, 'public')));
-//app.set('port', process.env.PORT);
 
-// set the app to be served up at port 5000
-app.listen(process.env.PORT || 5000)
+// set the app to be served up at port 5000 OR the dynamic port from Heroku
+app.listen(process.env.PORT || 3000)
 
 app.get('/', (req, res) => {
 	io.sockets.on('connection', function (socket) {
 		console.log('connection');
+
+		// when a connection is successful, create the OSC client and server
 		try {
 			socket.on("config", function (obj) {
 				isConnected = true;
@@ -51,6 +50,7 @@ app.get('/', (req, res) => {
 					oscClient.kill();
 				}
 		  	});
+		// or catch the error
 		} catch (err) {
 			console.log(err.message);
 		}
@@ -59,5 +59,3 @@ app.get('/', (req, res) => {
 
 	res.status(200).send();
 })
-
-// when a connection is successful, create the OSC client and server
