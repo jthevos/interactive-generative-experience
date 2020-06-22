@@ -38,7 +38,7 @@ let tibetanBowlFrequency = 92.4986056779086;
 function setup() {
     sinStep = TWO_PI/steps;
     smooth(16);
-  	createCanvas(1000, 800, P2D);
+  	createCanvas(window.innerWidth, window.innerHeight, P2D);
 	setupOsc(8338, 3334);
     slider = createSlider(0, 100, 0);
 
