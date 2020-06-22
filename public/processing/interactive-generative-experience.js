@@ -90,14 +90,14 @@ function draw() {
     agitatedBassSound.setVolume(sliderVal);
 
 
-    // visual piece
+    // Visual Piece
     if (face.length > 0) {
 		var faceParts = [[0,16], [17,21], [22,26], [27,30], [31,35], [36,41], [42,47], [48,59], [60,65]];
 		noFill();
         noseChinDistance = distance(face[29].x, face[29].y, face[8].x, face[8].y);
 	}
 
-    diam = 150;
+    diam = 150;  // set diameter in pixels
 
     while (diam < width/2) {
         //oscDebug(diam);
@@ -129,15 +129,14 @@ function draw() {
     }
 }
 
+// experimental function - do not use yet
 function setFrequency(sample, frequency) {
-
     let rateChangeFactor = frequency / tibetanBowlFrequency;
     sample.rate(sample.sampleRate() * rateChangeFactor);
-
 }
 
+// aritifically throttle osc messages printing
 function oscDebug(...args) {
-    // aritifically throttle osc messages printing
     let randnum = Math.floor(Math.random() * 100);
     if (randnum % 17 == 0) {
         print(args);
@@ -149,6 +148,7 @@ function distance(x1,y1,x2,y2) {
     return ((x1 - x2)**2 + (y1 - y2)**2)**(1/2)
 }
 
+// linear scale mapping between two scales given a value
 function mapValue(value, minValue, maxValue, minResultValue, maxResultValue) {
     if (value < minValue || value > maxValue) {
         return 0.003;   // return minimum agitation level if invalid mapping
@@ -160,6 +160,7 @@ function mapValue(value, minValue, maxValue, minResultValue, maxResultValue) {
     return result;
 }
 
+// handle osc receipt
 function receiveOsc(address, value) {
 	if (address == '/raw') {
 		face = [];

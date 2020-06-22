@@ -3,7 +3,8 @@ This file represents the server-side of this application. It is responsible
 for creating and managing the socket used to pass Open Sound Control (OSC)
 messages.
 
-This app uses the express framework.
+This app uses the express framework. OSC messages are sent over a web socket
+connected on port 8081. The app itself is access on port 3000.
 */
 
 const io = require('socket.io')(8081);  // send osc over 8081
