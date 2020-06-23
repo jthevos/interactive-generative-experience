@@ -39,7 +39,7 @@ function setup() {
     sinStep = TWO_PI/steps;
     smooth(16);
   	createCanvas(window.innerWidth, window.innerHeight, P2D);
-	setupOsc(8338, 3334);
+	//setupOsc(8338, 3334);
     slider = createSlider(0, 100, 0);
 
     // load in the calm sound and set its volume to full
